@@ -18,7 +18,7 @@ class GraphicsGenerator {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            GraphicsGenerator().generate3DLSystem(BINARY_TREE, object : GraphicsGenerateCallback {
+            GraphicsGenerator().generate3DLSystem("FFF[^FF][+FF]", object : GraphicsGenerateCallback {
                 override fun onModelGenerated() {
                     println("Wygenerowano")
                 }
@@ -33,7 +33,7 @@ class GraphicsGenerator {
         callback.onModelGenerated()
     }
 
-    private fun generate(arg: String, vecs: Array<Vector>? = null, pitch: Double = 90.0, yaw: Double = 0.0, roll: Double = 0.0): Mesh {
+    private fun generate(arg: String, vecs: Array<Vector>? = null, pitch: Double = 0.0, yaw: Double = 0.0, roll: Double = 0.0): Mesh {
         val turtle = Turtle(vecs, pitch, yaw, roll)
         var subCounter = 0
         for (c in arg.withIndex()) {

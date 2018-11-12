@@ -41,16 +41,19 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
 
     fun yaw(deg: Double = YAW_DEG) {
         yaw -= deg
-        print(turtle.direction())
 
+        println(turtle.direction())
         turtle.turn(deg)
-        print(turtle.direction())
+        println(turtle.direction())
 
     }
 
     fun pitch(deg: Double = PITCH_DEG) {
         pitch -= deg
+
+        println(turtle.direction())
         turtle.pitch(deg)
+        println(turtle.direction())
     }
 
     fun roll(deg: Double = ROLL_DEG) {
@@ -79,35 +82,35 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
     }
 
     private fun rotateMeshToMatchTurtleHeading() {
-        val cosa = Math.cos(Math.toRadians(yaw))
-        val sina = Math.sin(Math.toRadians(yaw))
+        val cosz = Math.cos(Math.toRadians(yaw))
+        val sinz = Math.sin(Math.toRadians(yaw))
 
-        val cosb = Math.cos(Math.toRadians(pitch))
-        val sinb = Math.sin(Math.toRadians(pitch))
+        val cosy = Math.cos(Math.toRadians(roll))
+        val siny = Math.sin(Math.toRadians(roll))
 
-        val cosc = Math.cos(Math.toRadians(roll))
-        val sinc = Math.sin(Math.toRadians(roll))
-
-        val Axx = cosa * cosb;
-        val Axy = cosa * sinb * sinc - sina * cosc;
-        val Axz = cosa * sinb * cosc + sina * sinc;
-
-        val Ayx = sina * cosb;
-        val Ayy = sina * sinb * sinc + cosa * cosc;
-        val Ayz = sina * sinb * cosc - cosa * sinc;
-
-        val Azx = -1 * sinb;
-        val Azy = cosb * sinc;
-        val Azz = cosb * cosc;
+        val cosx = Math.cos(Math.toRadians(pitch))
+        val sinx = Math.sin(Math.toRadians(pitch))
 
         for (i in 0 until objManager.mesh!!.vertexCount) {
-            val px = objManager.mesh!!.vertices[i * 3]
-            val py = objManager.mesh!!.vertices[i * 3 + 1]
-            val pz = objManager.mesh!!.vertices[i * 3 + 2]
+            val A = objManager.mesh!!.vertices[i * 3]
+            val B = objManager.mesh!!.vertices[i * 3 + 1]
+            val C = objManager.mesh!!.vertices[i * 3 + 2]
 
-            objManager.mesh!!.vertices[i * 3] = (Axx * px + Axy * py + Axz * pz).toFloat()
-            objManager.mesh!!.vertices[i * 3 + 1] = (Ayx * px + Ayy * py + Ayz * pz).toFloat()
-            objManager.mesh!!.vertices[i * 3 + 2] = (Azx * px + Azy * py + Azz * pz).toFloat()
+            val Aa = A * cosz - B * sinz
+            val Bb = A * sinz + B * cosz
+            val Cc = C
+
+            val Aaa = Cc * siny + Aa * cosy
+            val Bbb = Bb
+            val Ccc = Cc * cosy - Aa * siny
+
+            val Aaaa = Aaa
+            val Bbbb = Bbb * cosx - Ccc * sinx
+            val Cccc = Bbb * sinx + Ccc * cosx
+
+            objManager.mesh!!.vertices[i * 3] = Aaaa.toFloat()
+            objManager.mesh!!.vertices[i * 3 + 1] = Bbbb.toFloat()
+            objManager.mesh!!.vertices[i * 3 + 2] = Cccc.toFloat()
         }
     }
 
