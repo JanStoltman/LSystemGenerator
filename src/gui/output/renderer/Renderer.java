@@ -37,19 +37,27 @@ public abstract class Renderer implements GLEventListener {
                 for (int i = 0; i < mesh.getFaceCount(); i++) {
                     try {
                         gl.glBegin(GL.GL_TRIANGLES);
+                        float r = mesh.getCC(mesh.getFV(i, 0)).getX() / 255;
+                        float g = mesh.getCC(mesh.getFV(i, 0)).getY() / 255;
+                        float b = mesh.getCC(mesh.getFV(i, 0)).getZ() / 255;
+
+                        gl.glColor3f(r, g, b);
+
                         gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_AMBIENT, mesh.getSC(mesh.getFS(i), Surface.AMBIENT_COMPONENT), 0);
                         gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_DIFFUSE, mesh.getSC(mesh.getFS(i), Surface.DIFFUSE_COMPONENT), 0);
                         gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_SPECULAR, mesh.getSC(mesh.getFS(i), Surface.SPECULAR_COMPONENT), 0);
                         gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_SHININESS, mesh.getSC(mesh.getFS(i), Surface.SHININESS_COMPONENT), 0);
 
                         gl.glNormal3f(mesh.getNC(mesh.getFN(i, 0), 0), mesh.getNC(mesh.getFN(i, 0), 1), mesh.getNC(mesh.getFN(i, 0), 2));
-                        gl.glVertex3f(mesh.getVC(mesh.getFV(i, 0), 0), mesh.getVC(mesh.getFV(i, 0), 1), mesh.getVC(mesh.getFV(i, 0), 2));
+                        gl.glVertex3f(mesh.getVC(mesh.getFV(i, 0)).getX(), mesh.getVC(mesh.getFV(i, 0)).getY(), mesh.getVC(mesh.getFV(i, 0)).getZ());
+
 
                         gl.glNormal3f(mesh.getNC(mesh.getFN(i, 1), 0), mesh.getNC(mesh.getFN(i, 1), 1), mesh.getNC(mesh.getFN(i, 1), 2));
-                        gl.glVertex3f(mesh.getVC(mesh.getFV(i, 1), 0), mesh.getVC(mesh.getFV(i, 1), 1), mesh.getVC(mesh.getFV(i, 1), 2));
+                        gl.glVertex3f(mesh.getVC(mesh.getFV(i, 1)).getX(), mesh.getVC(mesh.getFV(i, 1)).getY(), mesh.getVC(mesh.getFV(i, 1)).getZ());
 
+                        // gl.glColor3f(mesh.getVC(mesh.getFV(i, 2)).getX(), mesh.getVC(mesh.getFV(i, 2)).getX(), mesh.getVC(mesh.getFV(i, 2)).getX());
                         gl.glNormal3f(mesh.getNC(mesh.getFN(i, 2), 0), mesh.getNC(mesh.getFN(i, 2), 1), mesh.getNC(mesh.getFN(i, 2), 2));
-                        gl.glVertex3f(mesh.getVC(mesh.getFV(i, 2), 0), mesh.getVC(mesh.getFV(i, 2), 1), mesh.getVC(mesh.getFV(i, 2), 2));
+                        gl.glVertex3f(mesh.getVC(mesh.getFV(i, 2)).getX(), mesh.getVC(mesh.getFV(i, 2)).getY(), mesh.getVC(mesh.getFV(i, 2)).getZ());
                         gl.glEnd();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -60,6 +68,7 @@ public abstract class Renderer implements GLEventListener {
             }
             gl.glFlush();
         }
+        gl.glColor3f(1, 1, 1);
     }
 
     public void init(GLAutoDrawable drawable) {
@@ -67,7 +76,6 @@ public abstract class Renderer implements GLEventListener {
         gl.glClearColor(0.5f, 0.5f, 0.5f, 5.0f);
         gl.glDepthFunc(GL.GL_LESS);
         gl.glEnable(GL.GL_DEPTH_TEST);
-
     }
 
     public void renderAxisGizmo(GL2 gl) {

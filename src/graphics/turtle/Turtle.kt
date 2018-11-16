@@ -15,10 +15,12 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
 
         const val CYLINDER_PATH = "//home//yggdralisk//Desktop//objs//cylinder.obj"
         const val SPHERE_PATH = "//home//yggdralisk//Desktop//objs//sphere.obj"
+        const val BIG_SPHERE_PATH = "//home//yggdralisk//Desktop//objs//big_sphere.obj"
+
     }
 
     private var turtle: StandardRotationalTurtle
-    val storingMesh: Mesh = Mesh(FloatArray(0), arrayOfNulls(0), IntArray(0))
+    val storingMesh: Mesh = Mesh(ArrayList(), arrayOfNulls(0), IntArray(0))
     private var objManager: ObjManager = ObjManager()
 
     init {
@@ -73,6 +75,15 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
         appendObjectManagerMeshToStoringMesh()
     }
 
+    fun     drawBigSphere() {
+        objManager.loadObj(File(BIG_SPHERE_PATH))
+
+        rotateMeshToMatchTurtleHeading()
+        moveObjectManagerMeshBaseToStoringMeshPosition()
+        appendObjectManagerMeshToStoringMesh()
+    }
+
+
     private fun drawCylinder() {
         objManager.loadObj(File(CYLINDER_PATH))
 
@@ -91,10 +102,10 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
         val cosx = Math.cos(Math.toRadians(pitch))
         val sinx = Math.sin(Math.toRadians(pitch))
 
-        for (i in 0 until objManager.mesh!!.vertexCount) {
-            val A = objManager.mesh!!.vertices[i * 3]
-            val B = objManager.mesh!!.vertices[i * 3 + 1]
-            val C = objManager.mesh!!.vertices[i * 3 + 2]
+        for (i in 0 until objManager.mesh!!.vertices.size) {
+            val A = objManager.mesh!!.vertices.get(i).coords.x
+            val B = objManager.mesh!!.vertices.get(i).coords.y
+            val C = objManager.mesh!!.vertices.get(i).coords.z
 
             val Aa = A * cosz - B * sinz
             val Bb = A * sinz + B * cosz
@@ -108,15 +119,15 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
             val Bbbb = Bbb * cosx - Ccc * sinx
             val Cccc = Bbb * sinx + Ccc * cosx
 
-            objManager.mesh!!.vertices[i * 3] = Aaaa.toFloat()
-            objManager.mesh!!.vertices[i * 3 + 1] = Bbbb.toFloat()
-            objManager.mesh!!.vertices[i * 3 + 2] = Cccc.toFloat()
+            objManager.mesh!!.vertices.get(i).coords.x = Aaaa.toFloat()
+            objManager.mesh!!.vertices.get(i).coords.y = Bbbb.toFloat()
+            objManager.mesh!!.vertices.get(i).coords.z = Cccc.toFloat()
         }
     }
 
     private fun appendObjectManagerMeshToStoringMesh() {
-        if (storingMesh.vertexCount == 0) {
-            storingMesh.vertices = objManager.mesh!!.vertices.copyOf()
+        if (storingMesh.vertices.size == 0) {
+            storingMesh.vertices.addAll(objManager.mesh!!.vertices)
             storingMesh.faces = objManager.mesh!!.faces.copyOf()
             storingMesh.normals = objManager.mesh!!.normals.copyOf()
             storingMesh.surfaces = objManager.mesh!!.surfaces.copyOf()
@@ -128,18 +139,17 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
     }
 
     private fun moveObjectManagerMeshBaseToStoringMeshPosition() {
-        objManager.mesh!!.vertices = objManager.mesh!!.vertices.mapIndexed { i, v ->
-            if (i % 3 == 0) {
-                (v + turtle.position().x).toFloat()
-            } else if (i % 3 == 1) {
-                (v + turtle.position().y).toFloat()
-            } else if (i % 3 == 2) {
-                (v + turtle.position().z).toFloat()
-            } else {
-                v
-            }
-        }.toFloatArray()
-        objManager.mesh!!.faces = objManager.mesh!!.faces.mapIndexed { i, f -> f + storingMesh.vertexCount }.toIntArray()
+        val tmp = objManager.mesh!!.vertices.map { v ->
+            v.coords.x += turtle.position().x.toFloat()
+            v.coords.y += turtle.position().y.toFloat()
+            v.coords.z += turtle.position().z.toFloat()
+            v
+        }
+
+        objManager.mesh!!.vertices.clear()
+        objManager.mesh!!.vertices.addAll(tmp)
+
+        objManager.mesh!!.faces = objManager.mesh!!.faces.mapIndexed { i, f -> f + storingMesh.vertices.size }.toIntArray()
     }
 
     fun appendMesh(submesh: Mesh) {
@@ -148,8 +158,8 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
             storingMesh.faces = submesh.faces
             storingMesh.normals = submesh.normals
             storingMesh.generateMeshBox()
-        } else if (submesh.normals != null && submesh.vertexCount > 0) {
-            storingMesh.vertices = storingMesh.vertices + submesh.vertices
+        } else if (submesh.normals != null && submesh.vertices.size > 0) {
+            storingMesh.vertices.addAll(submesh.vertices)
             storingMesh.faces = storingMesh.faces + submesh.faces
             storingMesh.normals = storingMesh.normals + submesh.normals
             storingMesh.generateMeshBox()

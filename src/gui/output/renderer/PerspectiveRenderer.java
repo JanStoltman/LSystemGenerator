@@ -16,6 +16,7 @@ public class PerspectiveRenderer extends Renderer {
     public void display(GLAutoDrawable drawable) {
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+        gl.glEnable(gl.GL_COLOR_MATERIAL);
 
         reshape(drawable, 0, 0, drawable.getSurfaceWidth(), drawable.getSurfaceHeight());
 

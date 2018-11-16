@@ -3,16 +3,20 @@ package loader
 import model.*
 import model.Vector
 import java.awt.Component
-import java.io.*
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileReader
+import java.io.FileWriter
 import java.util.*
 import javax.swing.JFileChooser
 import javax.swing.filechooser.FileNameExtensionFilter
+import kotlin.collections.ArrayList
 
 class ObjManager {
 
     private val fc = JFileChooser()
     private var parent: Component? = null
-    private var vertices: MutableList<Float>? = null
+    private var vertices: ArrayList<Vertex>? = null
     private var surfaces: MutableList<Surface>? = null
     private var faces: MutableList<Int>? = null
     private var normals: MutableList<Float>? = null
@@ -44,7 +48,7 @@ class ObjManager {
         hasNormals = false
         camera = Camera()
         lighting = Lighting()
-        vertices = LinkedList()
+        vertices = ArrayList()
         surfaces = LinkedList()
         surfaces!!.add(Surface())
         faces = LinkedList()
@@ -79,43 +83,13 @@ class ObjManager {
                     addAngle(line)
                 line = br.readLine()
             }
-            mesh = Mesh(toArrayF(vertices!!), toArrayF(normals!!), toArrayS(surfaces!!), toArrayI(faces!!))
+            mesh = Mesh(vertices, toArrayF(normals!!), toArrayS(surfaces!!), toArrayI(faces!!))
             if (!hasNormals) {
                 mesh!!.calculateNormals()
             }
         } catch (e: Exception) {
             e.printStackTrace()
             mesh = null
-        }
-
-        try {
-            val bw = BufferedWriter(FileWriter("//home//yggdralisk//Desktop//objs//lsys//meshData.txt"))
-            println(mesh!!.faceCount)
-            for (i in 0 until mesh!!.faceCount) {
-
-                bw.write(0.0f.toString() + System.lineSeparator())
-                bw.write(0.0f.toString() + System.lineSeparator())
-                bw.write(1f.toString() + System.lineSeparator())
-
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 0), 0).toString() + System.lineSeparator())
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 0), 1).toString() + System.lineSeparator())
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 0), 2).toString() + System.lineSeparator())
-
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 1), 0).toString() + System.lineSeparator())
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 1), 1).toString() + System.lineSeparator())
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 1), 2).toString() + System.lineSeparator())
-
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 2), 0).toString() + System.lineSeparator())
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 2), 1).toString() + System.lineSeparator())
-                bw.write(mesh!!.getVC(mesh!!.getFV(i, 2), 2).toString() + System.lineSeparator())
-
-                bw.write(System.lineSeparator())
-
-            }
-            bw.flush()
-            bw.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
 
         return mesh != null
@@ -134,14 +108,11 @@ class ObjManager {
     }
 
     private fun addVert(line: String) {
-        val strV = line.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        for (i in 1 until strV.size) {
-            try {
-                vertices!!.add(java.lang.Float.parseFloat(strV[i]))
-            } catch (e: Exception) {
-            }
-        }
+        val strV = line.split(" ").filter { it.isNotEmpty() && it != "v" }.map { it.toFloat() }
+
+        vertices!!.add(Vertex(Vector(strV.get(0), strV.get(1), strV.get(2)), Vector(strV.get(3), strV.get(4), strV.get(5))))
     }
+
 
     private fun addFace(line: String) {
         val strF = line.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
@@ -339,12 +310,18 @@ class ObjManager {
 
     private fun bufferMesh(mesh: Mesh, lighting: Lighting, camera: Camera): StringBuilder {
         val sb = StringBuilder()
-        sb.append("-vertices: ").append(mesh.vertexCount).append(System.lineSeparator())
-        for (i in 0 until mesh.vertexCount) {
+        sb.append("-vertices: ").append(mesh.vertices.size).append(System.lineSeparator())
+        for (i in 0 until mesh.vertices.size) {
             sb.append("v ")
-            for (j in 0 until Mesh.VERTEX_SIZE) {
-                sb.append(mesh.vertices[i * Mesh.VERTEX_SIZE + j]).append(" ")
-            }
+
+            sb.append(mesh.vertices.get(i).coords.x).append(" ")
+            sb.append(mesh.vertices.get(i).coords.y).append(" ")
+            sb.append(mesh.vertices.get(i).coords.z).append(" ")
+
+            sb.append(mesh.vertices.get(i).color.x).append(" ")
+            sb.append(mesh.vertices.get(i).color.y).append(" ")
+            sb.append(mesh.vertices.get(i).color.z).append(" ")
+
             sb.append(System.lineSeparator())
         }
         sb.append(System.lineSeparator())

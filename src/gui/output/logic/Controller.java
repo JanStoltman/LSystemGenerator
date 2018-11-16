@@ -9,10 +9,7 @@ import gui.output.event.ToolbarEventListener;
 import gui.output.renderer.OrthoRenderer;
 import gui.output.renderer.Renderer;
 import loader.ObjManager;
-import model.Camera;
-import model.Lighting;
-import model.Mesh;
-import model.MeshBox;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,10 +18,12 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Controller implements ToolbarEventListener, MouseListener, MouseMotionListener {
-    private static final float[] verts = {1, 1, 1, -1, -1, -1};
+    private static final ArrayList<Vertex> verts = new ArrayList<Vertex>(Arrays.asList(new Vertex(new Vector(1, 1, 1), new Vector(0, 0, 0)),
+            new Vertex(new Vector(-1, -1, -1), new Vector(0, 0, 0))));
     public static final MeshBox DEFAULT_WORLD_BOX = new MeshBox(verts);
     private MeshBox worldBox = DEFAULT_WORLD_BOX;
     private List<Mesh> meshes;
@@ -76,50 +75,50 @@ public class Controller implements ToolbarEventListener, MouseListener, MouseMot
 
     private void updateWorldBox() {
         if (meshes != null && meshes.size() > 0) {
-            worldBox.setMaxX(-Float.MAX_VALUE);
-            worldBox.setMaxY(-Float.MAX_VALUE);
-            worldBox.setMaxZ(-Float.MAX_VALUE);
+            worldBox.maxX = (-Float.MAX_VALUE);
+            worldBox.maxY = (-Float.MAX_VALUE);
+            worldBox.maxZ = (-Float.MAX_VALUE);
 
-            worldBox.setMinX(Float.MAX_VALUE);
-            worldBox.setMinY(Float.MAX_VALUE);
-            worldBox.setMinZ(Float.MAX_VALUE);
+            worldBox.minX = (Float.MAX_VALUE);
+            worldBox.minY = (Float.MAX_VALUE);
+            worldBox.minZ = (Float.MAX_VALUE);
 
             for (Mesh mesh : meshes) {
-                if (worldBox.getMaxX() < mesh.getBox().getMaxX()) {
-                    worldBox.setMaxX(mesh.getBox().getMaxX());
+                if (worldBox.maxX < mesh.box.maxX) {
+                    worldBox.maxX = mesh.box.maxX;
                 }
-                if (worldBox.getMaxY() < mesh.getBox().getMaxY()) {
-                    worldBox.setMaxY(mesh.getBox().getMaxY());
+                if (worldBox.maxY < mesh.box.maxY) {
+                    worldBox.maxY = mesh.box.maxY;
                 }
-                if (worldBox.getMaxZ() < mesh.getBox().getMaxZ()) {
-                    worldBox.setMaxZ(mesh.getBox().getMaxZ());
+                if (worldBox.maxZ < mesh.box.maxZ) {
+                    worldBox.maxZ = mesh.box.maxZ;
                 }
 
-                if (worldBox.getMinX() > mesh.getBox().getMinX()) {
-                    worldBox.setMinX(mesh.getBox().getMinX());
+                if (worldBox.minX < mesh.box.minX) {
+                    worldBox.minX = mesh.box.minX;
                 }
-                if (worldBox.getMinY() > mesh.getBox().getMinY()) {
-                    worldBox.setMinY(mesh.getBox().getMinY());
+                if (worldBox.minY < mesh.box.minY) {
+                    worldBox.minY = mesh.box.minY;
                 }
-                if (worldBox.getMinZ() > mesh.getBox().getMinZ()) {
-                    worldBox.setMinZ(mesh.getBox().getMinZ());
+                if (worldBox.minZ < mesh.box.minZ) {
+                    worldBox.minZ = mesh.box.minZ;
                 }
             }
-            worldBox.setMaxX(1 * Math.max(camera.getEye().getX(), worldBox.getMaxX()));
-            worldBox.setMaxY(1 * Math.max(camera.getEye().getY(), worldBox.getMaxY()));
-            worldBox.setMaxZ(1 * Math.max(camera.getEye().getZ(), worldBox.getMaxZ()));
+            worldBox.maxX = (1 * Math.max(camera.getEye().getX(), worldBox.maxX));
+            worldBox.maxY = (1 * Math.max(camera.getEye().getY(), worldBox.maxY));
+            worldBox.maxZ = (1 * Math.max(camera.getEye().getZ(), worldBox.maxZ));
 
-            worldBox.setMinX(1 * Math.min(camera.getEye().getX(), worldBox.getMinX()));
-            worldBox.setMinY(1 * Math.min(camera.getEye().getY(), worldBox.getMinY()));
-            worldBox.setMinZ(1 * Math.min(camera.getEye().getZ(), worldBox.getMinZ()));
+            worldBox.minX = (1 * Math.min(camera.getEye().getX(), worldBox.minX));
+            worldBox.minY = (1 * Math.min(camera.getEye().getY(), worldBox.minY));
+            worldBox.minZ = (1 * Math.min(camera.getEye().getZ(), worldBox.minZ));
 
-            worldBox.setMaxX(1 * Math.max(camera.getAt().getX(), worldBox.getMaxX()));
-            worldBox.setMaxY(1 * Math.max(camera.getAt().getY(), worldBox.getMaxY()));
-            worldBox.setMaxZ(1 * Math.max(camera.getAt().getZ(), worldBox.getMaxZ()));
+            worldBox.maxX = (1 * Math.max(camera.getAt().getX(), worldBox.maxX));
+            worldBox.maxY = (1 * Math.max(camera.getAt().getY(), worldBox.maxY));
+            worldBox.maxZ = (1 * Math.max(camera.getAt().getZ(), worldBox.maxZ));
 
-            worldBox.setMinX(Math.min(camera.getAt().getX(), worldBox.getMinX()));
-            worldBox.setMinY(Math.min(camera.getAt().getY(), worldBox.getMinY()));
-            worldBox.setMinZ(Math.min(camera.getAt().getZ(), worldBox.getMinZ()));
+            worldBox.minX = (Math.min(camera.getAt().getX(), worldBox.minX));
+            worldBox.minY = (Math.min(camera.getAt().getY(), worldBox.minY));
+            worldBox.minZ = (Math.min(camera.getAt().getZ(), worldBox.minZ));
         } else {
             worldBox = DEFAULT_WORLD_BOX;
         }

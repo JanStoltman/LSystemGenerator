@@ -9,16 +9,16 @@ import kotlin.math.max
 import kotlin.math.min
 
 class GraphicsGenerator {
-    private var storingMesh = Mesh(FloatArray(0), arrayOfNulls(0), IntArray(0))
+    private var storingMesh = Mesh(ArrayList(), arrayOfNulls(0), IntArray(0))
 
     companion object {
         const val KOCH_CURVE = "F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F++F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F−F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F−F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F++F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F"
-        const val BINARY_TREE = "FFFFFF[+FFF[+FF[+F][-F]][-FF[+F][-F]]][-FFF[+FF[+F][-F]][-FF[+F][-F]]]"
+        const val BINARY_TREE = "FFFFFF[+FFF[+FF[+F@][-F@]][-FF[+F@][-F@]]][-FFF[+FF[+F@][-F@]][-FF[+F@][-F@]]]"
         private val constants = arrayOf('-', '−', '+', 'F', '&', '^', '\\', '/', '[', ']', '@', '*', '#', '%', 'G')
 
         @JvmStatic
         fun main(args: Array<String>) {
-            GraphicsGenerator().generate3DLSystem("FFF[^FF][+FF]", object : GraphicsGenerateCallback {
+            GraphicsGenerator().generate3DLSystem(BINARY_TREE, object : GraphicsGenerateCallback {
                 override fun onModelGenerated() {
                     println("Wygenerowano")
                 }
@@ -93,7 +93,7 @@ class GraphicsGenerator {
 
                     val endIndex = max(ind, startIndex)
                     val submesh = generate(arg.substring(startIndex, endIndex), turtle.getLocationVectors(), turtle.pitch, turtle.yaw, turtle.roll)
-                    submesh.faces = submesh.faces.mapIndexed { i, f -> f + turtle.storingMesh.vertexCount }.toIntArray() //if (i % 2 == 0) turtle.storingMesh.vertexCount else turtle.storingMesh.normalCount
+                    submesh.faces = submesh.faces.mapIndexed { i, f -> f + turtle.storingMesh.vertices.size }.toIntArray() //if (i % 2 == 0) turtle.storingMesh.vertexCount else turtle.storingMesh.normalCount
                     turtle.appendMesh(submesh)
                 }
                 ']' -> {
@@ -106,14 +106,12 @@ class GraphicsGenerator {
                     turtle.drawSphere()
                 }
                 '@' -> {
-                    //TODO: Spare symbol
-                    turtle.jump(0.5)
-                    turtle.drawSphere()
+                    turtle.drawBigSphere()
                 }
             }
         }
 
-        println("Turtle vertexCount: ${turtle.storingMesh.vertexCount}")
+        println("Turtle vertexCount: ${turtle.storingMesh.vertices.size}")
 
         return turtle.storingMesh
     }

@@ -21,6 +21,7 @@ public class OrthoRenderer extends Renderer {
     public void display(GLAutoDrawable drawable) {
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+        gl.glEnable(gl.GL_COLOR_MATERIAL);
 
         reshape(drawable, 0, 0, drawable.getSurfaceWidth(), drawable.getSurfaceHeight());
 
@@ -68,19 +69,19 @@ public class OrthoRenderer extends Renderer {
 
         switch (viewType) {
             case VIEW_TOP:
-                maxAbsX = Math.max(Math.abs(worldBox.getMaxX()), Math.abs(worldBox.getMinX()));
-                maxAbsY = Math.max(Math.abs(worldBox.getMaxZ()), Math.abs(worldBox.getMinZ()));
-                maxAbsZ = Math.max(Math.abs(worldBox.getMaxY()), Math.abs(worldBox.getMinY()));
+                maxAbsX = Math.max(Math.abs(worldBox.maxX), Math.abs(worldBox.minX));
+                maxAbsY = Math.max(Math.abs(worldBox.maxZ), Math.abs(worldBox.minZ));
+                maxAbsZ = Math.max(Math.abs(worldBox.maxY), Math.abs(worldBox.minY));
                 break;
             case VIEW_LEFT:
-                maxAbsX = Math.max(Math.abs(worldBox.getMaxZ()), Math.abs(worldBox.getMinZ()));
-                maxAbsY = Math.max(Math.abs(worldBox.getMaxY()), Math.abs(worldBox.getMinY()));
-                maxAbsZ = Math.max(Math.abs(worldBox.getMaxX()), Math.abs(worldBox.getMinX()));
+                maxAbsX = Math.max(Math.abs(worldBox.maxZ), Math.abs(worldBox.minZ));
+                maxAbsY = Math.max(Math.abs(worldBox.maxY), Math.abs(worldBox.minY));
+                maxAbsZ = Math.max(Math.abs(worldBox.maxX), Math.abs(worldBox.minX));
                 break;
             case VIEW_FRONT:
-                maxAbsX = Math.max(Math.abs(worldBox.getMaxX()), Math.abs(worldBox.getMinX()));
-                maxAbsY = Math.max(Math.abs(worldBox.getMaxY()), Math.abs(worldBox.getMinY()));
-                maxAbsZ = Math.max(Math.abs(worldBox.getMaxZ()), Math.abs(worldBox.getMinZ()));
+                maxAbsX = Math.max(Math.abs(worldBox.maxX), Math.abs(worldBox.minX));
+                maxAbsY = Math.max(Math.abs(worldBox.maxY), Math.abs(worldBox.minY));
+                maxAbsZ = Math.max(Math.abs(worldBox.maxZ), Math.abs(worldBox.minZ));
                 break;
             default:
                 break;

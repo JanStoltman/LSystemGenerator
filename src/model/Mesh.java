@@ -1,18 +1,19 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Mesh {
-    public static final int VERTEX_SIZE = 3;
     public static final int FACE_SIZE = 7;
     public static final int NORMAL_SIZE = 3;
 
-    private float[] vertices;
-    private Surface[] surfaces;
-    private float[] normals;
-    private int[] faces;
-    private MeshBox box;
+    public ArrayList<Vertex> vertices = new ArrayList();
+    public Surface[] surfaces;
+    public float[] normals;
+    public int[] faces;
+    public MeshBox box;
 
-    public Mesh(float[] vertices, Surface[] surfaces, int[] faces) {
-        if (vertices.length % VERTEX_SIZE == 0 && surfaces != null && faces.length % FACE_SIZE == 0) {
+    public Mesh(ArrayList<Vertex> vertices, Surface[] surfaces, int[] faces) {
+        if (surfaces != null && faces.length % FACE_SIZE == 0) {
             this.vertices = vertices;
             this.faces = faces;
             this.surfaces = surfaces;
@@ -22,9 +23,8 @@ public class Mesh {
         }
     }
 
-    public Mesh(float[] vertices, float[] normals, Surface[] surfaces, int[] faces) {
-        if (vertices.length % VERTEX_SIZE == 0 &&
-                surfaces != null &&
+    public Mesh(ArrayList<Vertex> vertices, float[] normals, Surface[] surfaces, int[] faces) {
+        if (surfaces != null &&
                 faces.length % FACE_SIZE == 0 &&
                 normals.length % NORMAL_SIZE == 0) {
             this.vertices = vertices;
@@ -37,50 +37,6 @@ public class Mesh {
         }
     }
 
-    public float[] getVertices() {
-        return vertices;
-    }
-
-    public void setVertices(float[] vertices) {
-        this.vertices = vertices;
-    }
-
-    public Surface[] getSurfaces() {
-        return surfaces;
-    }
-
-    public void setSurfaces(Surface[] surfaces) {
-        this.surfaces = surfaces;
-    }
-
-    public int[] getFaces() {
-        return faces;
-    }
-
-    public void setFaces(int[] faces) {
-        this.faces = faces;
-    }
-
-    public float[] getNormals() {
-        return normals;
-    }
-
-    public void setNormals(float[] normals) {
-        this.normals = normals;
-    }
-
-    public MeshBox getBox() {
-        return box;
-    }
-
-    public void setBox(MeshBox box) {
-        this.box = box;
-    }
-
-    public int getVertexCount() {
-        return vertices.length / VERTEX_SIZE;
-    }
-
     public int getFaceCount() {
         return faces.length / FACE_SIZE;
     }
@@ -89,8 +45,12 @@ public class Mesh {
         return normals.length / NORMAL_SIZE;
     }
 
-    public float getVC(int vertex, int component) {
-        return vertices[vertex * VERTEX_SIZE + component];
+    public Vector getVC(int vertex) {
+        return vertices.get(vertex).getCoords();
+    }
+
+    public Vector getCC(int vertex) {
+        return vertices.get(vertex).getColor();
     }
 
     public float getNC(int normal, int component) {
@@ -135,12 +95,12 @@ public class Mesh {
     }
 
     public void calculateNormals() {
-        normals = new float[getVertexCount() * NORMAL_SIZE];
-        int[] vertexMultiples = new int[getVertexCount()];
+        normals = new float[vertices.size() * NORMAL_SIZE];
+        int[] vertexMultiples = new int[vertices.size()];
         for (int i = 0; i < getFaceCount(); i++) {
-            Vector v0 = new Vector(getVC(getFV(i, 0), 0), getVC(getFV(i, 0), 1), getVC(getFV(i, 0), 2));
-            Vector v1 = new Vector(getVC(getFV(i, 1), 0), getVC(getFV(i, 1), 1), getVC(getFV(i, 1), 2));
-            Vector v2 = new Vector(getVC(getFV(i, 2), 0), getVC(getFV(i, 2), 1), getVC(getFV(i, 2), 2));
+            Vector v0 = getVC(getFV(i, 0));
+            Vector v1 = getVC(getFV(i, 1));
+            Vector v2 = getVC(getFV(i, 2));
 
             Vector norm = Vector.cross(new Vector(v0, v1), new Vector(v1, v2));
             norm.norm();
@@ -176,7 +136,7 @@ public class Mesh {
         System.out.println("d");
     }
 
-    public void generateMeshBox(){
+    public void generateMeshBox() {
         box = new MeshBox(vertices);
     }
 
