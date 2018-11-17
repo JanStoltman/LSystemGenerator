@@ -83,15 +83,17 @@ class ObjManager {
                     addAngle(line)
                 line = br.readLine()
             }
-            mesh = Mesh(vertices, toArrayF(normals!!), toArrayS(surfaces!!), toArrayI(faces!!))
+
+            mesh = Mesh(vertices, normals?.toFloatArray(), surfaces?.toTypedArray(), faces?.toIntArray())
+
             if (!hasNormals) {
                 mesh!!.calculateNormals()
             }
         } catch (e: Exception) {
+            println(e.message)
             e.printStackTrace()
             mesh = null
         }
-
         return mesh != null
     }
 
@@ -133,21 +135,11 @@ class ObjManager {
 
         }
         faces!!.add(currentSurface)
-        //println(faces!![faces!!.size - 1])
-        //println(faces)
     }
 
     private fun addNormal(line: String) {
         hasNormals = true
-        val strN = line.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        for (i in 1 until strN.size) {
-            try {
-                normals!!.add(java.lang.Float.parseFloat(strN[i]))
-            } catch (e: Exception) {
-            }
-
-        }
-        //println(normals)
+        normals?.addAll( line.split(" ").filter { it.isNotEmpty() && it != "vn" }.map { it.toFloat() })
     }
 
     private fun addAmbient(line: String) {
@@ -166,7 +158,7 @@ class ObjManager {
                 surfaces!![s].ambient = component
             }
         } catch (e: Exception) {
-            println("Wrogn ambient")
+            println("Wrong ambient")
         }
 
     }
@@ -249,30 +241,6 @@ class ObjManager {
             println("Wrogn angle")
         }
 
-    }
-
-    private fun toArrayF(list: List<Float>): FloatArray {
-        val array = FloatArray(list.size)
-        for (i in list.indices) {
-            array[i] = list[i]
-        }
-        return array
-    }
-
-    private fun toArrayI(list: List<Int>): IntArray {
-        val array = IntArray(list.size)
-        for (i in list.indices) {
-            array[i] = list[i]
-        }
-        return array
-    }
-
-    private fun toArrayS(list: MutableList<Surface>): Array<Surface?> {
-        val array = arrayOfNulls<Surface>(list.size)
-        for (i in array.indices) {
-            array[i] = list.removeAt(0)
-        }
-        return array
     }
 
     fun saveObj(mesh: Mesh, lighting: Lighting, camera: Camera) {

@@ -24,8 +24,6 @@ public class PerspectiveRenderer extends Renderer {
         Vector at = camera.getAt();
         Vector up = camera.getUp();
 
-        System.out.println("model setup");
-
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
         glu.gluLookAt(eye.getX(), eye.getY(), eye.getZ(), at.getX(), at.getY(), at.getZ(), up.getX(), up.getY(), up.getZ());

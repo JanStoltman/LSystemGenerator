@@ -124,10 +124,6 @@ public class Controller implements ToolbarEventListener, MouseListener, MouseMot
         }
     }
 
-    public Camera getCamera() {
-        return camera;
-    }
-
     public void setCamera(Camera camera) {
         this.camera = camera;
         if (toolbar != null) {

@@ -17,7 +17,9 @@ public class ResultDisplay {
     public static GLCapabilities CAPS = new GLCapabilities(GLProfile.get(GLProfile.GL2));
 
     public static void main(String[] arg) {
+
         new ResultDisplay().displayOutputView();
+
     }
 
     public void displayOutputView() {
@@ -34,6 +36,56 @@ public class ResultDisplay {
         Camera camera = new Camera(100, 0.01f, 1000, new Vector(10f, 10f, 10f), new Vector(0, 0, 0));
         controller.setCamera(camera);
 
+       //displayFour(controller, frame, gbc);
+        displayTwo(controller, frame, gbc);
+    }
+
+    private void displayTwo(Controller controller, JFrame frame, GridBagConstraints gbc) {
+        OrthoRenderer frontRenderer = new OrthoRenderer(OrthoRenderer.VIEW_FRONT);
+        PerspectiveRenderer perspectiveRenderer = new PerspectiveRenderer();
+
+        Viewport front = new Viewport(frontRenderer, "Przód");
+        controller.addViewport(front);
+
+        Viewport perspective = new Viewport(perspectiveRenderer, "Perpektywa");
+        controller.addViewport(perspective);
+
+        Toolbar toolbar = new Toolbar();
+        toolbar.setPreferredSize(new Dimension(100, 100));
+        toolbar.setMinimumSize(toolbar.getPreferredSize());
+        controller.setToolbar(toolbar);
+
+        gbc.insets = new Insets(3, 3, 3, 3);
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        gbc.fill = GridBagConstraints.BOTH;
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        frame.getContentPane().add(perspective, gbc);
+
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        frame.getContentPane().add(front, gbc);
+
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        frame.getContentPane().add(toolbar, gbc);
+
+        frame.setSize(1000, 1000);
+        frame.setVisible(true);
+
+        controller.onSaveLoadEvent(new SaveLoadEvent(this, SaveLoadEvent.LOAD));
+    }
+
+    private void displayFour(Controller controller, JFrame frame, GridBagConstraints gbc) {
         OrthoRenderer topRenderer = new OrthoRenderer(OrthoRenderer.VIEW_TOP);
         OrthoRenderer frontRenderer = new OrthoRenderer(OrthoRenderer.VIEW_FRONT);
         OrthoRenderer leftRenderer = new OrthoRenderer(OrthoRenderer.VIEW_LEFT);

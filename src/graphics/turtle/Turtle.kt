@@ -6,7 +6,7 @@ import loader.ObjManager
 import model.Mesh
 import java.io.File
 
-class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.0, var roll: Double = 0.0) {
+class Turtle(vecs: Array<Vector>?, var pitch: Double = 90.0, var yaw: Double = 0.0, var roll: Double = 0.0) {
     companion object {
         const val MOVE_FORWARD_LEN = 2.0
         const val YAW_DEG = 45.0
@@ -16,6 +16,7 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
         const val CYLINDER_PATH = "//home//yggdralisk//Desktop//objs//cylinder.obj"
         const val SPHERE_PATH = "//home//yggdralisk//Desktop//objs//sphere.obj"
         const val BIG_SPHERE_PATH = "//home//yggdralisk//Desktop//objs//big_sphere.obj"
+        const val BR_SPHERE_PATH = "//home//yggdralisk//Desktop//objs//sphere_br.obj"
 
     }
 
@@ -43,50 +44,49 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 0.0, var yaw: Double = 0.
 
     fun yaw(deg: Double = YAW_DEG) {
         yaw -= deg
+        yaw %= 360
 
-        println(turtle.direction())
         turtle.turn(deg)
-        println(turtle.direction())
-
     }
 
     fun pitch(deg: Double = PITCH_DEG) {
         pitch -= deg
+        pitch %= 360
 
-        println(turtle.direction())
+
         turtle.pitch(deg)
-        println(turtle.direction())
     }
 
     fun roll(deg: Double = ROLL_DEG) {
-        roll -= deg
+        roll += deg
+        roll %= 360
+
         turtle.bank(deg)
     }
 
-    fun finish() {
-        drawSphere()
-    }
-
     fun drawSphere() {
-        objManager.loadObj(File(SPHERE_PATH))
-
-        rotateMeshToMatchTurtleHeading()
-        moveObjectManagerMeshBaseToStoringMeshPosition()
-        appendObjectManagerMeshToStoringMesh()
+        loadObject(SPHERE_PATH)
     }
 
-    fun     drawBigSphere() {
-        objManager.loadObj(File(BIG_SPHERE_PATH))
-
-        rotateMeshToMatchTurtleHeading()
-        moveObjectManagerMeshBaseToStoringMeshPosition()
-        appendObjectManagerMeshToStoringMesh()
+    fun drawBigSphere() {
+        loadObject(BIG_SPHERE_PATH)
     }
 
+    fun drawTwigEnd() {
+        loadObject(BR_SPHERE_PATH)
+    }
 
     private fun drawCylinder() {
-        objManager.loadObj(File(CYLINDER_PATH))
+        loadObject(CYLINDER_PATH)
+    }
 
+    private fun loadObject(path: String) {
+        objManager.loadObj(File(path))
+
+        addObjectToMesh()
+    }
+
+    private fun addObjectToMesh() {
         rotateMeshToMatchTurtleHeading()
         moveObjectManagerMeshBaseToStoringMeshPosition()
         appendObjectManagerMeshToStoringMesh()
