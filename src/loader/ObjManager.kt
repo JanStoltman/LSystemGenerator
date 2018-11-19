@@ -22,6 +22,9 @@ class ObjManager {
     private var normals: MutableList<Float>? = null
     private var currentSurface: Int = 0
     private var hasNormals: Boolean = false
+    private var currentColor: Vector? = null
+    private var currentTextureName: String? = null
+
 
     var mesh: Mesh? = null
         private set
@@ -61,6 +64,10 @@ class ObjManager {
             br = BufferedReader(fr)
             var line: String? = br.readLine()
             while (line != null) {
+                if (line.length >= 2 && line.startsWith("tt "))
+                    readTexture(line)
+                if (line.length >= 2 && line.startsWith("cc "))
+                    readColor(line)
                 if (line.length >= 2 && line.startsWith("v "))
                     addVert(line)
                 if (line.length >= 2 && line.startsWith("f "))
@@ -110,9 +117,21 @@ class ObjManager {
     }
 
     private fun addVert(line: String) {
-        val strV = line.split(" ").filter { it.isNotEmpty() && it != "v" }.map { it.toFloat() }
+        val strV = line.split(" ").filter { it.isNotEmpty() && it != "v" }
 
-        vertices!!.add(Vertex(Vector(strV.get(0), strV.get(1), strV.get(2)), Vector(strV.get(3), strV.get(4), strV.get(5))))
+        vertices!!.add(Vertex(Vector(strV.get(0).toFloat(), strV.get(1).toFloat(), strV.get(2).toFloat()), Vector(currentColor?.x
+                ?: strV.get(3).toFloat(), currentColor?.y ?: strV.get(4).toFloat(), currentColor?.z
+                ?: strV.get(5).toFloat()), currentTextureName ?: strV.getOrElse(6) { "" }))
+    }
+
+    private fun readTexture(line: String) {
+        this.currentTextureName = line.split(" ").get(1)
+    }
+
+    private fun readColor(line: String) {
+        val strV = line.split(" ").filter { it.isNotEmpty() && it != "cc" }.map { it.toFloat() }
+
+        this.currentColor = Vector(strV.get(0), strV.get(1), strV.get(2))
     }
 
 
@@ -139,7 +158,7 @@ class ObjManager {
 
     private fun addNormal(line: String) {
         hasNormals = true
-        normals?.addAll( line.split(" ").filter { it.isNotEmpty() && it != "vn" }.map { it.toFloat() })
+        normals?.addAll(line.split(" ").filter { it.isNotEmpty() && it != "vn" }.map { it.toFloat() })
     }
 
     private fun addAmbient(line: String) {

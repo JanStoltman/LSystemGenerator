@@ -13,15 +13,15 @@ class GraphicsGenerator {
     private var storingMesh = Mesh(ArrayList(), arrayOfNulls(0), IntArray(0))
 
     companion object {
-        const val ANGLE = 23.0
+        const val ANGLE = 45.0
 
-        const val KOCH_CURVE = "F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F++F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F−F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F−F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F++F++F−F−F++F++F++F−F−F++F−F++F−F−F++F−F++F−F−F++F++F++F−F−F++F"
         const val BINARY_TREE = "FFFFFF[+FFF[+FF[+F@][-F@]][-FF[+F@][-F@]]][-FFF[+FF[+F@][-F@]][-FF[+F@][-F@]]]"
-        private val constants = arrayOf('-', '−', '+', 'F', '&', '^', '\\', '/', '[', ']', '@', '*', '#', '%', 'G')
+        const val LOW_POLY_TREE = "FFG[&F@][^FF@][+FF[++F*]G-G@]"
+        private val constants = arrayOf('-', '−', '+', 'F', '&', '^', '\\', '/', '[', ']', '@', '*', '#', '%', 'G','T')
 
         @JvmStatic
         fun main(args: Array<String>) {
-            GraphicsGenerator().generate3DLSystem("FFG[&F@][^FF@][+FF[++F*]G-G@]", object : GraphicsGenerateCallback {
+            GraphicsGenerator().generate3DLSystem("FFF*FFFFF@", object : GraphicsGenerateCallback {
                 override fun onModelGenerated() {
                     ResultDisplay().displayOutputView()
                 }
@@ -66,6 +66,9 @@ class GraphicsGenerator {
                 'G' ->{
                     turtle.moveForward()
                     turtle.drawTwigEnd()
+                }
+                'T' ->{
+                    turtle.drawTwig()
                 }
                 '&' -> {
                     turtle.pitch(ANGLE)

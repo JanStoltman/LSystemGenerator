@@ -22,8 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Controller implements ToolbarEventListener, MouseListener, MouseMotionListener {
-    private static final ArrayList<Vertex> verts = new ArrayList<Vertex>(Arrays.asList(new Vertex(new Vector(1, 1, 1), new Vector(0, 0, 0)),
-            new Vertex(new Vector(-1, -1, -1), new Vector(0, 0, 0))));
+    private static final ArrayList<Vertex> verts = new ArrayList<Vertex>(Arrays.asList(new Vertex(new Vector(1, 1, 1), new Vector(0, 0, 0), ""),
+            new Vertex(new Vector(-1, -1, -1), new Vector(0, 0, 0), "")));
     public static final MeshBox DEFAULT_WORLD_BOX = new MeshBox(verts);
     private MeshBox worldBox = DEFAULT_WORLD_BOX;
     private List<Mesh> meshes;

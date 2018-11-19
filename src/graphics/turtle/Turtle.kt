@@ -17,7 +17,7 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 90.0, var yaw: Double = 0
         const val SPHERE_PATH = "//home//yggdralisk//Desktop//objs//sphere.obj"
         const val BIG_SPHERE_PATH = "//home//yggdralisk//Desktop//objs//big_sphere.obj"
         const val BR_SPHERE_PATH = "//home//yggdralisk//Desktop//objs//sphere_br.obj"
-
+        const val TWIG_PATH = "//home//yggdralisk//Desktop//objs//twig.obj"
     }
 
     private var turtle: StandardRotationalTurtle
@@ -74,6 +74,10 @@ class Turtle(vecs: Array<Vector>?, var pitch: Double = 90.0, var yaw: Double = 0
 
     fun drawTwigEnd() {
         loadObject(BR_SPHERE_PATH)
+    }
+
+    fun drawTwig() {
+        loadObject(TWIG_PATH)
     }
 
     private fun drawCylinder() {

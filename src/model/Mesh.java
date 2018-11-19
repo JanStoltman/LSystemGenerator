@@ -53,6 +53,8 @@ public class Mesh {
         return vertices.get(vertex).getColor();
     }
 
+    public String getTT(int vertex){return vertices.get(vertex).getTextureName();}
+
     public float getNC(int normal, int component) {
         return normals[normal * NORMAL_SIZE + component];
     }

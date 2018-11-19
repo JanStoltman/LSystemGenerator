@@ -7,6 +7,8 @@ import com.jogamp.opengl.math.VectorUtil;
 import model.MeshBox;
 import model.Vector;
 
+import static com.jogamp.opengl.GL.GL_TEXTURE_2D;
+
 public class OrthoRenderer extends Renderer {
     public static final float MARGIN_RATE = 1.5f;
     public static final float MARKER_RATE = 0.05f;
@@ -23,6 +25,7 @@ public class OrthoRenderer extends Renderer {
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glEnable(gl.GL_COLOR_MATERIAL);
+        gl.glEnable(GL_TEXTURE_2D);
 
         reshape(drawable, 0, 0, drawable.getSurfaceWidth(), drawable.getSurfaceHeight());
 

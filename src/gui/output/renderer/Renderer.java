@@ -1,13 +1,18 @@
 package gui.output.renderer;
 
-import com.jogamp.opengl.GL;
-import com.jogamp.opengl.GL2;
-import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.*;
 import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.util.GLBuffers;
+import com.jogamp.opengl.util.texture.TextureData;
+import com.jogamp.opengl.util.texture.TextureIO;
 import model.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.IntBuffer;
 import java.util.List;
+
+import static com.jogamp.opengl.GL.*;
 
 public abstract class Renderer implements GLEventListener {
     public static final byte VIEW_TOP = 0;
@@ -22,6 +27,8 @@ public abstract class Renderer implements GLEventListener {
     protected Lighting lighting;
     protected boolean shouldFullUpdate = false;
     protected byte viewType;
+    protected IntBuffer textureNames = GLBuffers.newDirectIntBuffer(2);
+    protected String[] texturePaths = new String[]{"//home//yggdralisk//Desktop//objs//bark.png", "//home//yggdralisk//Desktop//objs//leaves.png"};
 
     public Renderer() {
         lighting = new Lighting();
@@ -32,12 +39,58 @@ public abstract class Renderer implements GLEventListener {
     }
 
     public void renderMeshes(GL2 gl) {
+        gl.glGenTextures(2, textureNames);
+        try {
+            for (int i = 0; i < 2; i++) {
+                TextureData textureData = TextureIO.newTextureData(GLProfile.get(GLProfile.GL2),
+                        new File(texturePaths[i]),
+                        false,
+                        TextureIO.PNG);
+
+                gl.glBindTexture(GL_TEXTURE_2D, textureNames.get(i));
+                gl.glTexImage2D(GL_TEXTURE_2D,
+                        0,
+                        textureData.getInternalFormat(),
+                        textureData.getWidth(),
+                        textureData.getHeight(),
+                        textureData.getBorder(),
+                        textureData.getPixelFormat(),
+                        textureData.getPixelType(),
+                        textureData.getBuffer());
+
+                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+                // Generate mip maps
+                gl.glGenerateMipmap(GL_TEXTURE_2D);
+
+                // Deactivate texture
+                gl.glBindTexture(GL_TEXTURE_2D, 0);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         if (meshes != null) {
             for (Mesh mesh : meshes) {
+                gl.glActiveTexture(GL_TEXTURE0);
+
                 for (int i = 0; i < mesh.getFaceCount(); i++) {
                     try {
+                        String textureName = mesh.getTT(mesh.getFV(i, 0));
+
+                        if(textureName.trim().equals("bark")){
+                            gl.glBindTexture(gl.GL_TEXTURE_2D, textureNames.get(0));
+                        }else{
+                            gl.glBindTexture(gl.GL_TEXTURE_2D, textureNames.get(1));
+                        }
+
                         gl.glBegin(GL.GL_TRIANGLES);
-                        Vector color =  mesh.getCC(mesh.getFV(i, 0));
+                        Vector color = mesh.getCC(mesh.getFV(i, 0));
+
                         float r = color.getX() / 255;
                         float g = color.getY() / 255;
                         float b = color.getZ() / 255;
@@ -49,12 +102,15 @@ public abstract class Renderer implements GLEventListener {
                         gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_SPECULAR, mesh.getSC(mesh.getFS(i), Surface.SPECULAR_COMPONENT), 0);
                         gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_SHININESS, mesh.getSC(mesh.getFS(i), Surface.SHININESS_COMPONENT), 0);
 
+                        gl.glTexCoord2f(0f, 0f);
                         gl.glNormal3f(mesh.getNC(mesh.getFN(i, 0), 0), mesh.getNC(mesh.getFN(i, 0), 1), mesh.getNC(mesh.getFN(i, 0), 2));
                         gl.glVertex3f(mesh.getVC(mesh.getFV(i, 0)).getX(), mesh.getVC(mesh.getFV(i, 0)).getY(), mesh.getVC(mesh.getFV(i, 0)).getZ());
 
+                        gl.glTexCoord2f(0f, 1f);
                         gl.glNormal3f(mesh.getNC(mesh.getFN(i, 1), 0), mesh.getNC(mesh.getFN(i, 1), 1), mesh.getNC(mesh.getFN(i, 1), 2));
                         gl.glVertex3f(mesh.getVC(mesh.getFV(i, 1)).getX(), mesh.getVC(mesh.getFV(i, 1)).getY(), mesh.getVC(mesh.getFV(i, 1)).getZ());
 
+                        gl.glTexCoord2f(1f, 0f);
                         gl.glNormal3f(mesh.getNC(mesh.getFN(i, 2), 0), mesh.getNC(mesh.getFN(i, 2), 1), mesh.getNC(mesh.getFN(i, 2), 2));
                         gl.glVertex3f(mesh.getVC(mesh.getFV(i, 2)).getX(), mesh.getVC(mesh.getFV(i, 2)).getY(), mesh.getVC(mesh.getFV(i, 2)).getZ());
                         gl.glEnd();
@@ -67,6 +123,7 @@ public abstract class Renderer implements GLEventListener {
             }
             gl.glFlush();
         }
+        gl.glDisable(GL_TEXTURE_2D);
         gl.glColor3f(1, 1, 1);
     }
 

@@ -36,8 +36,8 @@ public class ResultDisplay {
         Camera camera = new Camera(100, 0.01f, 1000, new Vector(10f, 10f, 10f), new Vector(0, 0, 0));
         controller.setCamera(camera);
 
-       //displayFour(controller, frame, gbc);
-        displayTwo(controller, frame, gbc);
+       displayFour(controller, frame, gbc);
+        //displayTwo(controller, frame, gbc);
     }
 
     private void displayTwo(Controller controller, JFrame frame, GridBagConstraints gbc) {
