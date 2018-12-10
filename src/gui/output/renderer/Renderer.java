@@ -28,7 +28,7 @@ public abstract class Renderer implements GLEventListener {
     protected boolean shouldFullUpdate = false;
     protected byte viewType;
     protected IntBuffer textureNames = GLBuffers.newDirectIntBuffer(2);
-    protected String[] texturePaths = new String[]{"//home//yggdralisk//Desktop//objs//bark.png", "//home//yggdralisk//Desktop//objs//leaves.png"};
+    protected String[] texturePaths = new String[]{"bark.png", "leaves.png"};
 
     Long rendTime = 0L;
 

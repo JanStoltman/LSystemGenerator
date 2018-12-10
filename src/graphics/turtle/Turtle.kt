@@ -12,13 +12,13 @@ interface Turtle {
         const val PITCH_DEG = 45.0
         const val ROLL_DEG = 45.0
 
-        const val CYLINDER_PATH = "//home//yggdralisk//Desktop//objs//branch.obj"
-        const val SPHERE_PATH = "//home//yggdralisk//Desktop//objs//leaf.obj"
-        const val BIG_SPHERE_PATH = "//home//yggdralisk//Desktop//objs//big_leaf.obj"
-        const val BR_SPHERE_PATH = "//home//yggdralisk//Desktop//objs//sphere_br.obj"
-        const val TWIG_PATH = "//home//yggdralisk//Desktop//objs//twig.obj"
-        const val SUPERBRANCH = "//home//yggdralisk//Desktop//objs//superbranch.obj"
-        const val SUPERLEAF = "//home//yggdralisk//Desktop//objs//superleaves.obj"
+        const val CYLINDER_PATH = "branch.obj"
+        const val SPHERE_PATH = "leaf.obj"
+        const val BIG_SPHERE_PATH = "big_leaf.obj"
+        const val BR_SPHERE_PATH = "sphere_br.obj"
+        const val TWIG_PATH = "twig.obj"
+        const val SUPERBRANCH = "superbranch.obj"
+        const val SUPERLEAF = "superleaves.obj"
 
     }
 

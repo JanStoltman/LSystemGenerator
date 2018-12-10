@@ -2,61 +2,29 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="L-System_Generator:jar" />
+      <artifact name="Main" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="847b3fd8-a057-4994-a7f4-cddcd88f367d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/L_System_Generator_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/turtle/TurtleWrapper.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/input/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/input/dialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/input/main.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/output/element/ToolbarBuilder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/output/element/ViewportFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gui/output/renderer/RendererFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/GenerationTests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/LSystemGeneratorTests.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/L-System_Generator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/L-System_Generator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/callback/GraphicsGenerateCallback.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/callback/GraphicsGenerateCallback.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/GraphicsGenerator$Companion$main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/GraphicsGenerator$Companion$main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/GraphicsGenerator$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/GraphicsGenerator$Companion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/L_System_Generator_jar/L-System_Generator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/L_System_Generator_jar/L-System_Generator.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/GraphicsGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/GraphicsGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/turtle/Turtle$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/turtle/Turtle$Companion.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/turtle/Turtle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/turtle/Turtle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/gui/input/LSystemResultDialog$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/gui/input/LSystemResultDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/gui/input/LSystemResultDialog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/gui/input/MainGui.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/turtle/TurtleWrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/graphics/turtle/TurtleWrapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/gui/output/logic/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/gui/output/logic/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/gui/output/logic/ResultDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/gui/output/logic/ResultDisplay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/gui/output/renderer/PerspectiveRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/gui/output/renderer/PerspectiveRenderer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/gui/output/renderer/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/gui/output/renderer/Renderer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/loader/ObjManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/loader/ObjManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/lsystem/LSystemGenerator$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/lsystem/LSystemGenerator$Companion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/lsystem/LSystemGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/lsystem/LSystemGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/model/LSystemGeneratorData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/model/LSystemGeneratorData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/model/Mesh.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/model/Mesh.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/L-System_Generator/model/Surface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/L-System_Generator/model/Surface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/callback/GraphicsGenerateCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/callback/GraphicsGenerateCallback.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphics/GraphicsGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/GraphicsGenerator.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphics/turtle/Turtle.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphics/turtle/Turtle.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/input/LSystemResultDialog.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/input/LSystemResultDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/input/LSystemResultDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/input/MainGui.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/input/MainGui.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/output/logic/ResultDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/output/logic/ResultDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/output/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/output/logic/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/output/renderer/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/output/renderer/Renderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/loader/ObjManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/loader/ObjManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lsystem/LSystemGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/lsystem/LSystemGenerator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/LSystemData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/LSystemData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Mesh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Surface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Surface.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -71,20 +39,8 @@
       <file leaf-file-name="GraphicsGenerator.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/GraphicsGenerator.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="18" column="128" selection-start-line="18" selection-start-column="128" selection-end-line="18" selection-end-column="128" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TurtleWrapper.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/turtle/TurtleWrapper.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="28" column="47" lean-forward="true" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-              <folding>
-                <element signature="e#25#424#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="503">
+              <caret line="141" column="81" selection-start-line="141" selection-start-column="81" selection-end-line="141" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -92,16 +48,16 @@
       <file leaf-file-name="Turtle.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/turtle/Turtle.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+            <state relative-caret-position="128">
+              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Renderer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Renderer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/output/renderer/Renderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
+            <state relative-caret-position="-2137">
               <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
               <folding>
                 <element signature="e#6764#6765#0" expanded="true" />
@@ -119,15 +75,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResultDisplay.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/output/logic/ResultDisplay.java">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gui/output/logic/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+            <state relative-caret-position="24">
+              <caret line="150" column="13" lean-forward="true" selection-start-line="150" selection-start-column="13" selection-end-line="150" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ObjManager.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/loader/ObjManager.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
               <folding>
-                <element signature="e#636#637#0" expanded="true" />
-                <element signature="e#691#692#0" expanded="true" />
+                <element signature="e#16#354#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TurtleWrapper.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphics/turtle/TurtleWrapper.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="98" column="19" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -210,14 +183,12 @@
         <option value="$PROJECT_DIR$/src/gui/input/LSystemResultDialog.form" />
         <option value="$PROJECT_DIR$/src/model/Camera.java" />
         <option value="$PROJECT_DIR$/src/model/Vertex.kt" />
-        <option value="$PROJECT_DIR$/src/gui/output/logic/Controller.java" />
         <option value="$PROJECT_DIR$/src/gui/output/renderer/OrthoRenderer.java" />
         <option value="$PROJECT_DIR$/src/gui/output/renderer/PerspectiveRenderer.java" />
         <option value="$PROJECT_DIR$/src/gui/output/renderer/RendererFactory.kt" />
         <option value="$PROJECT_DIR$/src/gui/output/element/ViewportFactory.kt" />
         <option value="$PROJECT_DIR$/src/gui/output/element/ToolbarBuilder.kt" />
         <option value="$PROJECT_DIR$/src/model/Surface.java" />
-        <option value="$PROJECT_DIR$/src/loader/ObjManager.kt" />
         <option value="$PROJECT_DIR$/src/lsystem/LSystemGenerator.kt" />
         <option value="$PROJECT_DIR$/src/callback/GraphicsGenerateCallback.kt" />
         <option value="$PROJECT_DIR$/src/model/Mesh.java" />
@@ -235,11 +206,13 @@
         <option value="$PROJECT_DIR$/src/gui/input/dialog.fxml" />
         <option value="$PROJECT_DIR$/src/gui/input/LSystemResultDialog.java" />
         <option value="$PROJECT_DIR$/src/gui/output/result.fxml" />
+        <option value="$PROJECT_DIR$/src/gui/output/logic/ResultDisplay.java" />
         <option value="$PROJECT_DIR$/src/graphics/turtle/TurtleWrapper.kt" />
         <option value="$PROJECT_DIR$/src/graphics/GraphicsGenerator.kt" />
         <option value="$PROJECT_DIR$/src/graphics/turtle/Turtle.kt" />
-        <option value="$PROJECT_DIR$/src/gui/output/logic/ResultDisplay.java" />
         <option value="$PROJECT_DIR$/src/gui/output/renderer/Renderer.java" />
+        <option value="$PROJECT_DIR$/src/gui/output/logic/Controller.java" />
+        <option value="$PROJECT_DIR$/src/loader/ObjManager.kt" />
       </list>
     </option>
   </component>
@@ -281,7 +254,7 @@
     <property name="SearchEverywhereHistoryKey" value="Obj&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/loader/ObjManager.kt&#10;Resul&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/logic/ResultDisplay.java&#10;Rendere&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/Renderer.java&#10;Turtle&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/turtle/Turtle.kt&#10;Grap&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/GraphicsGenerator.kt&#10;Tool&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/element/ToolbarBuilder.kt&#10;Toolbar&#9;PSI&#9;JAVA://gui.output.element.Toolbar&#10;LSys&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/lsystem/LSystemGenerator.kt&#10;Rende&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/Renderer.java&#10;Render&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/PerspectiveRenderer.java&#10;Wrapper&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/turtle/TurtleWrapper.kt&#10;Build&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/element/ToolbarBuilder.kt&#10;Factor&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/element/ViewportFactory.kt&#10;Facto&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/RendererFactory.kt&#10;Graphi&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/GraphicsGenerator.kt&#10;Displ&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/logic/ResultDisplay.java&#10;render&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/Renderer.java&#10;TurtleW&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/turtle/TurtleWrapper.kt&#10;Graph&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/GraphicsGenerator.kt&#10;ResultDi&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/logic/ResultDisplay.java&#10;Renderer&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/Renderer.java&#10;ResultDis&#9;PSI&#9;JAVA://gui.output.logic.ResultDisplay&#10;Turt&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/turtle/TurtleWrapper.kt&#10;TurtleWr&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/turtle/TurtleWrapper.kt&#10;renderer&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/Renderer.java&#10;Disp&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/logic/ResultDisplay.java&#10;Persp&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/PerspectiveRenderer.java&#10;Ortho&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/OrthoRenderer.java&#10;Turtl&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/turtle/Turtle.kt&#10;ObjMa&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/loader/ObjManager.kt&#10;Gene&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/GraphicsGenerator.kt&#10;Genera&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/GraphicsGenerator.kt&#10;Camera&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/model/Camera.java&#10;Per&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/PerspectiveRenderer.java&#10;Resu&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/logic/ResultDisplay.java&#10;contr&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/logic/Controller.java&#10;Orth&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/OrthoRenderer.java&#10;ObjMan&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/loader/ObjManager.kt&#10;ResultDIs&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/logic/ResultDisplay.java&#10;Perspe&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/PerspectiveRenderer.java&#10;Gr&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/graphics/GraphicsGenerator.kt&#10;Rend&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/Renderer.java&#10;MeshBo&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/model/MeshBox.java&#10;ObjMana&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/loader/ObjManager.kt&#10;ob&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/loader/ObjManager.kt&#10;Mesh&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/model/Mesh.java&#10;ObjM&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/loader/ObjManager.kt&#10;Contro&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/logic/Controller.java&#10;Re&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/gui/output/renderer/Renderer.java&#10;eshB&#9;FILE&#9;file:///home/yggdralisk/Desktop/L-System_Generator/src/model/MeshBox.java" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../libs/openjfx-11.0.1_linux-x64_bin-sdk/javafx-sdk-11.0.1/lib" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15283018" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -561,22 +534,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="-2" width="1853" height="1082" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32486773" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.32407406" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5008095" side_tool="true" weight="0.24382716" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5008095" side_tool="true" weight="0.28703704" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28703704" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4991905" weight="0.28703704" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32921812" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18510523" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18510523" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4991905" weight="0.3600823" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -779,16 +751,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/loader/ObjManager.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
-          <folding>
-            <element signature="e#16#354#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/output/renderer/RendererFactory.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -831,6 +793,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="70" column="55" lean-forward="true" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
+          <folding>
+            <element signature="e#14#198#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -923,13 +888,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/output/logic/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/output/element/ToolbarBuilder.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -951,17 +909,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/GraphicsGenerator.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="18" column="128" selection-start-line="18" selection-start-column="128" selection-end-line="18" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/output/logic/ResultDisplay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+        <state relative-caret-position="390">
+          <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
           <folding>
             <element signature="e#636#637#0" expanded="true" />
             <element signature="e#691#692#0" expanded="true" />
@@ -969,26 +920,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/turtle/TurtleWrapper.kt">
+    <entry file="file://$PROJECT_DIR$/src/graphics/GraphicsGenerator.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="28" column="47" lean-forward="true" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-          <folding>
-            <element signature="e#25#424#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="503">
+          <caret line="141" column="81" selection-start-line="141" selection-start-column="81" selection-end-line="141" selection-end-column="81" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/turtle/Turtle.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+        <state relative-caret-position="128">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/output/renderer/Renderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
+        <state relative-caret-position="-2137">
           <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
           <folding>
             <element signature="e#6764#6765#0" expanded="true" />
@@ -1005,13 +953,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/loader/ObjManager.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+          <folding>
+            <element signature="e#16#354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/turtle/TurtleWrapper.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="98" column="19" selection-start-line="98" selection-start-column="19" selection-end-line="98" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/output/logic/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="150" column="13" lean-forward="true" selection-start-line="150" selection-start-column="13" selection-end-line="150" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>L-System_Generator:jar</last-edited>
+          <last-edited>Main</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

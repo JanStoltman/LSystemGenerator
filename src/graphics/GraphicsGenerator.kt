@@ -139,6 +139,6 @@ class GraphicsGenerator {
 
     private fun saveLSystem() {
         val objManager = ObjManager()
-        objManager.saveObj(storingMesh, objManager.lighting, objManager.camera, "//home//yggdralisk//Desktop//objs//lsys//lsys.obj")
+        objManager.saveObj(storingMesh, objManager.lighting, objManager.camera, "lsys.obj")
     }
 }

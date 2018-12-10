@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Main">
+    <output-path>$PROJECT_DIR$/out/artifacts/Main</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="gui.input.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="AA" />
+        <option name="vendor" value="A" />
+        <option name="version" value="1" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="L_System_Generator.jar">
+        <element id="module-output" name="L-System_Generator" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -41,7 +41,7 @@ class ObjManager {
         this.parent = parent
         val filter = FileNameExtensionFilter("OBJ Files", "obj")
         fc.fileFilter = filter
-        fc.currentDirectory = File("//home//yggdralisk//Desktop//objs//lsys")
+        fc.currentDirectory = File("lsys")
         camera = Camera()
     }
 

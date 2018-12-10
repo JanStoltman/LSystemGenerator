@@ -158,7 +158,7 @@ public class Controller implements ToolbarEventListener, MouseListener, MouseMot
     @Override
     public void onSaveLoadEvent(SaveLoadEvent e) {
         if (e.getID() == SaveLoadEvent.LOAD) {
-            File f = new File("//home//yggdralisk//Desktop//objs//lsys//lsys.obj");
+            File f = new File("lsys.obj");
             if (objManager.loadObj(f)) {
                 setCamera(objManager.getCamera());
                 setLighting(objManager.getLighting());

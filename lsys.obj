@@ -1,0 +1,17 @@
+-vertices: 0
+
+-normals: 0
+
+-faces: 0
+
+-surfaces: 0
+-lighting: 0
+#a l 0.0 0.0 0.0 1.0
+#d l 1.0 1.0 1.0 1.0
+#a m 0.2 0.2 0.2 1.0
+#sp l 1.0 1.0 1.0 1.0
+#p l 50.0 50.0 50.0
+-camera: 0
+#p ceye 10.0 10.0 10.0
+#p cat 0.0 0.0 0.0
+#angle 100.0
