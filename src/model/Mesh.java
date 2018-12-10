@@ -135,7 +135,6 @@ public class Mesh {
             normals[i * NORMAL_SIZE + 1] = normals[i * NORMAL_SIZE + 1] / len;
             normals[i * NORMAL_SIZE + 2] = normals[i * NORMAL_SIZE + 2] / len;
         }
-        System.out.println("d");
     }
 
     public void generateMeshBox() {

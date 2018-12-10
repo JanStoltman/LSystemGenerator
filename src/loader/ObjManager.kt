@@ -11,8 +11,12 @@ import java.util.*
 import javax.swing.JFileChooser
 import javax.swing.filechooser.FileNameExtensionFilter
 import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 class ObjManager {
+    companion object {
+        val filesLocked = HashSet<String>()
+    }
 
     private val fc = JFileChooser()
     private var parent: Component? = null
@@ -273,7 +277,8 @@ class ObjManager {
     }
 
     fun saveObj(mesh: Mesh?, lighting: Lighting?, camera: Camera?, fileName: String) {
-        if (mesh != null && lighting != null && camera != null) {
+        if (mesh != null && lighting != null && camera != null && filesLocked.contains(fileName).not()) {
+            filesLocked.add(fileName)
             val sb = bufferMesh(mesh, lighting, camera)
 
             var fw: FileWriter? = null
@@ -290,7 +295,7 @@ class ObjManager {
                 } catch (e2: Exception) {
                     e2.printStackTrace()
                 }
-
+                filesLocked.remove(fileName)
             }
         }
     }
@@ -308,6 +313,8 @@ class ObjManager {
             sb.append(mesh.vertices.get(i).color.x).append(" ")
             sb.append(mesh.vertices.get(i).color.y).append(" ")
             sb.append(mesh.vertices.get(i).color.z).append(" ")
+
+            sb.append(mesh.vertices.get(i).textureName).append(" ")
 
             sb.append(System.lineSeparator())
         }

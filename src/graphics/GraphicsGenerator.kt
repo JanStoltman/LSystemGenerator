@@ -3,6 +3,7 @@ package graphics
 import callback.GraphicsGenerateCallback
 import cheloniidae.Vector
 import graphics.turtle.Turtle
+import graphics.turtle.TurtleWrapper
 import gui.output.logic.ResultDisplay
 import loader.ObjManager
 import model.Mesh
@@ -13,32 +14,35 @@ class GraphicsGenerator {
     private var storingMesh = Mesh(ArrayList(), arrayOfNulls(0), IntArray(0))
 
     companion object {
-        const val ANGLE = 45.0
-
         const val BINARY_TREE = "FFFFFF[+FFF[+FF[+F@][-F@]][-FF[+F@][-F@]]][-FFF[+FF[+F@][-F@]][-FF[+F@][-F@]]]"
         const val LOW_POLY_TREE = "FFG[&F@][^FF@][+FF[++F*]G-G@]"
-        private val constants = arrayOf('-', '−', '+', 'F', '&', '^', '\\', '/', '[', ']', '@', '*', '#', '%', 'G','T')
+        private val constants = arrayOf('-', '−', '+', 'F', '&', '^', '\\', '/', '[', ']', '@', '*', '#', '%', 'G', 'T', 'Q', 'W')
 
         @JvmStatic
         fun main(args: Array<String>) {
-            GraphicsGenerator().generate3DLSystem("FFF*FFFFF@", object : GraphicsGenerateCallback {
-                override fun onModelGenerated() {
+            GraphicsGenerator().generate3DLSystem("FFF@", 90f, object : GraphicsGenerateCallback {
+                override fun onModelGenerated(vertexCount: Long, facesCount: Long) {
                     ResultDisplay().displayOutputView()
                 }
             })
         }
     }
 
-    fun generate3DLSystem(arg: String, callback: GraphicsGenerateCallback) {
+    private var angle: Double = 90.0
+
+    fun generate3DLSystem(arg: String, callback: GraphicsGenerateCallback) = generate3DLSystem(arg = arg, angle = 90f, callback = callback)
+
+    fun generate3DLSystem(arg: String, angle: Float = 90f, callback: GraphicsGenerateCallback) {
+        this.angle = angle.toDouble();
         storingMesh = generate(arg.filter { it in constants })
         storingMesh.calculateNormals()
         saveLSystem()
+        callback.onModelGenerated(storingMesh.vertices.size.toLong(), storingMesh.faceCount.toLong())
         storingMesh = Mesh(ArrayList(), arrayOfNulls(0), IntArray(0))
-        callback.onModelGenerated()
     }
 
     private fun generate(arg: String, vecs: Array<Vector>? = null, pitch: Double = 0.0, yaw: Double = 0.0, roll: Double = 0.0): Mesh {
-        val turtle = Turtle(vecs, pitch, yaw, roll)
+        val turtle: Turtle = TurtleWrapper(vecs, pitch, yaw, roll)
         var subCounter = 0
         for (c in arg.withIndex()) {
             if (subCounter > 0 && c.value != ']') {
@@ -46,41 +50,41 @@ class GraphicsGenerator {
             }
             when (c.value) {
                 '-' -> {
-                    turtle.yaw(-1 * ANGLE )
+                    turtle.yaw(-1 * angle)
                 }
                 '−' -> {
-                    turtle.yaw(-1 * ANGLE)
+                    turtle.yaw(-1 * angle)
                 }
                 '+' -> {
-                    turtle.yaw(ANGLE)
+                    turtle.yaw(angle)
                 }
                 '%' -> {
-                    turtle.yaw(ANGLE)
+                    turtle.yaw(angle)
                 }
                 '#' -> {
-                    turtle.yaw(-1 * ANGLE)
+                    turtle.yaw(-1 * angle)
                 }
                 'F' -> {
                     turtle.moveForward()
                 }
-                'G' ->{
+                'G' -> {
                     turtle.moveForward()
-                    turtle.drawTwigEnd()
+                    turtle.drawBigSphere()
                 }
-                'T' ->{
+                'T' -> {
                     turtle.drawTwig()
                 }
                 '&' -> {
-                    turtle.pitch(ANGLE)
+                    turtle.pitch(angle)
                 }
                 '^' -> {
-                    turtle.pitch(-1 * ANGLE)
+                    turtle.pitch(-1 * angle)
                 }
                 '\\' -> {
                     turtle.roll()
                 }
                 '/' -> {
-                    turtle.roll(-1 * ANGLE)
+                    turtle.roll(-1 * angle)
                 }
                 '[' -> {
                     subCounter += 1
@@ -103,7 +107,7 @@ class GraphicsGenerator {
                     }
 
                     val endIndex = max(ind, startIndex)
-                    val submesh = generate(arg.substring(startIndex, endIndex), turtle.getLocationVectors(), turtle.pitch, turtle.yaw, turtle.roll)
+                    val submesh = generate(arg.substring(startIndex, endIndex), turtle.getLocationVectors(), turtle.getPitch(), turtle.getYaw(), turtle.getRoll())
                     submesh.faces = submesh.faces.mapIndexed { i, f -> f + turtle.storingMesh.vertices.size }.toIntArray()
                     turtle.appendMesh(submesh)
                 }
@@ -119,10 +123,16 @@ class GraphicsGenerator {
                 '@' -> {
                     turtle.drawBigSphere()
                 }
+                'Q' -> {
+                    turtle.superL()
+                }
+                'W' ->{
+                    turtle.superB()
+                }
             }
         }
 
-        println("Turtle vertexCount: ${turtle.storingMesh.vertices.size}")
+        //println("TurtleWrapper vertexCount: ${turtle.storingMesh.vertices.size}")
 
         return turtle.storingMesh
     }

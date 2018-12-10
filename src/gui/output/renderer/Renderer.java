@@ -30,6 +30,8 @@ public abstract class Renderer implements GLEventListener {
     protected IntBuffer textureNames = GLBuffers.newDirectIntBuffer(2);
     protected String[] texturePaths = new String[]{"//home//yggdralisk//Desktop//objs//bark.png", "//home//yggdralisk//Desktop//objs//leaves.png"};
 
+    Long rendTime = 0L;
+
     public Renderer() {
         lighting = new Lighting();
     }
@@ -40,39 +42,9 @@ public abstract class Renderer implements GLEventListener {
 
     public void renderMeshes(GL2 gl) {
         gl.glGenTextures(2, textureNames);
-        try {
-            for (int i = 0; i < 2; i++) {
-                TextureData textureData = TextureIO.newTextureData(GLProfile.get(GLProfile.GL2),
-                        new File(texturePaths[i]),
-                        false,
-                        TextureIO.PNG);
-
-                gl.glBindTexture(GL_TEXTURE_2D, textureNames.get(i));
-                gl.glTexImage2D(GL_TEXTURE_2D,
-                        0,
-                        textureData.getInternalFormat(),
-                        textureData.getWidth(),
-                        textureData.getHeight(),
-                        textureData.getBorder(),
-                        textureData.getPixelFormat(),
-                        textureData.getPixelType(),
-                        textureData.getBuffer());
-
-                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-                // Generate mip maps
-                gl.glGenerateMipmap(GL_TEXTURE_2D);
-
-                // Deactivate texture
-                gl.glBindTexture(GL_TEXTURE_2D, 0);
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Begin render: " + System.nanoTime());
+        rendTime = System.nanoTime();
+        bindTextures(gl);
 
         if (meshes != null) {
             for (Mesh mesh : meshes) {
@@ -125,6 +97,45 @@ public abstract class Renderer implements GLEventListener {
         }
         gl.glDisable(GL_TEXTURE_2D);
         gl.glColor3f(1, 1, 1);
+
+        System.out.println("End render: " + System.nanoTime());
+        System.out.println("Render time: " + (System.nanoTime() - rendTime) * 1.0e-9 + "s");
+    }
+
+    private void bindTextures(GL2 gl) {
+        try {
+            for (int i = 0; i < 2; i++) {
+                TextureData textureData = TextureIO.newTextureData(GLProfile.get(GLProfile.GL2),
+                        new File(texturePaths[i]),
+                        false,
+                        TextureIO.PNG);
+
+                gl.glBindTexture(GL_TEXTURE_2D, textureNames.get(i));
+                gl.glTexImage2D(GL_TEXTURE_2D,
+                        0,
+                        textureData.getInternalFormat(),
+                        textureData.getWidth(),
+                        textureData.getHeight(),
+                        textureData.getBorder(),
+                        textureData.getPixelFormat(),
+                        textureData.getPixelType(),
+                        textureData.getBuffer());
+
+                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+                // Generate mip maps
+                gl.glGenerateMipmap(GL_TEXTURE_2D);
+
+                // Deactivate texture
+                gl.glBindTexture(GL_TEXTURE_2D, 0);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void init(GLAutoDrawable drawable) {

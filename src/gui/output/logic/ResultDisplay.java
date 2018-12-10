@@ -3,7 +3,9 @@ package gui.output.logic;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLProfile;
 import gui.output.element.Toolbar;
+import gui.output.element.ToolbarBuilder;
 import gui.output.element.Viewport;
+import gui.output.element.ViewportFactory;
 import gui.output.event.SaveLoadEvent;
 import gui.output.renderer.OrthoRenderer;
 import gui.output.renderer.PerspectiveRenderer;
@@ -17,9 +19,7 @@ public class ResultDisplay {
     public static GLCapabilities CAPS = new GLCapabilities(GLProfile.get(GLProfile.GL2));
 
     public static void main(String[] arg) {
-
         new ResultDisplay().displayOutputView();
-
     }
 
     public void displayOutputView() {
@@ -36,7 +36,7 @@ public class ResultDisplay {
         Camera camera = new Camera(100, 0.01f, 1000, new Vector(10f, 10f, 10f), new Vector(0, 0, 0));
         controller.setCamera(camera);
 
-       displayFour(controller, frame, gbc);
+        displayFour(controller, frame, gbc);
         //displayTwo(controller, frame, gbc);
     }
 
@@ -86,26 +86,23 @@ public class ResultDisplay {
     }
 
     private void displayFour(Controller controller, JFrame frame, GridBagConstraints gbc) {
-        OrthoRenderer topRenderer = new OrthoRenderer(OrthoRenderer.VIEW_TOP);
-        OrthoRenderer frontRenderer = new OrthoRenderer(OrthoRenderer.VIEW_FRONT);
-        OrthoRenderer leftRenderer = new OrthoRenderer(OrthoRenderer.VIEW_LEFT);
-        PerspectiveRenderer perspectiveRenderer = new PerspectiveRenderer();
-
-        Viewport top = new Viewport(topRenderer, "Góra");
+        Viewport top = ViewportFactory.Companion.getViewport(OrthoRenderer.VIEW_TOP, "Góra");
         controller.addViewport(top);
 
-        Viewport front = new Viewport(frontRenderer, "Przód");
+        Viewport front = ViewportFactory.Companion.getViewport(OrthoRenderer.VIEW_FRONT, "Przód");
         controller.addViewport(front);
 
-        Viewport left = new Viewport(leftRenderer, "Lewo");
+        Viewport left = ViewportFactory.Companion.getViewport(OrthoRenderer.VIEW_LEFT, "Lewo");
         controller.addViewport(left);
 
-        Viewport perspective = new Viewport(perspectiveRenderer, "Perpektywa");
+        Viewport perspective = ViewportFactory.Companion.getViewport("Perpektywa");
         controller.addViewport(perspective);
 
-        Toolbar toolbar = new Toolbar();
-        toolbar.setPreferredSize(new Dimension(100, 100));
-        toolbar.setMinimumSize(toolbar.getPreferredSize());
+        Toolbar toolbar = new ToolbarBuilder()
+                .setPreferedSize(new Dimension(100, 100))
+                .setMinSize(new Dimension(100, 100))
+                .build();
+
         controller.setToolbar(toolbar);
 
         gbc.insets = new Insets(5, 5, 5, 5);

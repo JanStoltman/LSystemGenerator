@@ -1,45 +1,44 @@
 package gui.input;
 
 import callback.DialogCallback;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+public class LSystemResultDialog extends Application {
+    private final String lSystem;
+    private final DialogCallback callback;
+    private Stage primaryStage;
 
-public class LSystemResultDialog extends JDialog {
-    private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
-    private JTextArea resultArea;
+    public LSystemResultDialog(String lSystem, DialogCallback mainGui) {
+        this.lSystem = lSystem;
+        this.callback = mainGui;
+    }
 
-    public LSystemResultDialog(String lSystem, DialogCallback callback) {
-        setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+    @Override
+    public void start(Stage stage) throws Exception {
+        this.primaryStage = stage;
+        Parent root = FXMLLoader.load(getClass().getResource("dialog.fxml"));
+        Scene mainScene = new Scene(root, 800, 400);
+        primaryStage.setScene(mainScene);
+        primaryStage.setTitle("L-System 3D Generator");
+        primaryStage.show();
 
-        resultArea.setText(lSystem);
 
-        buttonOK.addActionListener(e -> {
-            dispose();
+        ((TextArea) mainScene.lookup("#resultT")).setWrapText(true);
+        ((TextArea) mainScene.lookup("#resultT")).setText(lSystem);
+
+        ((Button) mainScene.lookup("#generate")).setOnAction(e -> {
+            primaryStage.close();
             callback.onOk();
         });
-        buttonCancel.addActionListener(e -> {
-            dispose();
+        ((Button) mainScene.lookup("#cacel")).setOnAction(e -> {
+            primaryStage.close();
             callback.onCancel();
         });
-
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                dispose();
-                callback.onCancel();
-            }
-        });
-
-        contentPane.registerKeyboardAction(e -> {
-            this.dispose();
-            callback.onCancel();
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 }

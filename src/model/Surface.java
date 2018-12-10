@@ -2,10 +2,10 @@ package model;
 
 public class Surface {
 
-    public static final float[] DEFAULT_AMBIENT = {0.2f, 0.2f, 0.2f, 1};
-    public static final float[] DEFAULT_DIFFUSE = {0.8f, 0.8f, 0.8f, 1};
-    public static final float[] DEFAULT_SPECULAR = {0, 0, 0, 1};
-    public static final float[] DEFAULT_SHININESS = {0};
+    static final float[] DEFAULT_AMBIENT = {0.5f, 0.5f, 0.5f, 1};
+    static final float[] DEFAULT_DIFFUSE = {0.8f, 0.8f, 0.8f, 1};
+    static final float[] DEFAULT_SPECULAR = {0, 0, 0, 1};
+    static final float[] DEFAULT_SHININESS = {1};
 
     public static final int AMBIENT_COMPONENT = 0;
     public static final int DIFFUSE_COMPONENT = 1;
